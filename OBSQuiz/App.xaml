@@ -1,0 +1,26 @@
+﻿<Application x:Class="OBSQuiz.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:OBSQuiz"
+             xmlns:viewModel="clr-namespace:OBSQuiz.ViewModel"
+             StartupUri="View/MainView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- THEMES -->
+                <ResourceDictionary Source="View/Styles/ThemeLight.xaml"/>
+
+                <!-- STYLES -->
+                <ResourceDictionary Source="View/Styles/Animation.xaml"/>
+                <ResourceDictionary Source="View/Styles/BorderStyles.xaml"/>
+                <ResourceDictionary Source="View/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="View/Styles/CheckBoxStyles.xaml"/>
+                <ResourceDictionary Source="View/Styles/GridStyles.xaml"/>
+                <ResourceDictionary Source="View/Styles/ScrollBarStyles.xaml"/>
+                <ResourceDictionary Source="View/Styles/StackPanelStyles.xaml"/>
+                <ResourceDictionary Source="View/Styles/TextBlockStyles.xaml"/>
+                <ResourceDictionary Source="View/Styles/TextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
