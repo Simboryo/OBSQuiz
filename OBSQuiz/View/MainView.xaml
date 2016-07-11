@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OBSQuiz.View"
         mc:Ignorable="d" Title="OBS Quiz" WindowStyle="None"
         MinHeight="350" Height="550" MinWidth="500" Width="750">
 
@@ -173,10 +172,41 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="{Binding MessageBoxText}" Style="{StaticResource MessageBoxTextBlock}"/>
-                    <Button Grid.Row="1" Content="OK" Style="{StaticResource MessageBoxButton}" Command="{Binding MessageBoxCommand}"/>
+                    <!-- Ellipse | right answers -->
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <Ellipse Style="{StaticResource ResultEllipse}"/>
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{Binding RightAnswerText}" Style="{StaticResource MessageBoxTextBlock}"/>
+                            <Rectangle Grid.Row="1" Style="{StaticResource ResultRectangle}"/>
+                            <TextBlock Grid.Row="2" Text="{Binding AllRightAnswerText}" Style="{StaticResource MessageBoxTextBlock}"/>
+                        </Grid>
+                    </Grid>
+                    
+                    <TextBlock x:Name="TxtBlRightAnswer" Grid.Row="1" Grid.Column="0" Style="{StaticResource MessageBoxTextBlock}"/>
+
+                    <!-- Ellipse | wrong answers -->
+                    <Grid Grid.Row="0" Grid.Column="2">
+                        <Ellipse Style="{StaticResource ResultEllipse}"/>
+                        <TextBlock Text="{Binding WrongAnswerText}" Style="{StaticResource MessageBoxTextBlock}"/>
+                    </Grid>
+
+                    <TextBlock x:Name="TxtBlWrongAnswer" Grid.Row="1" Grid.Column="2" Style="{StaticResource MessageBoxTextBlock}"/>
+                    
+                    <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                            Content="OK" Style="{StaticResource MessageBoxButton}" Command="{Binding MessageBoxCommand}"/>
                 </Grid>
             </Border>
 

@@ -66,7 +66,7 @@
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\Topic.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Resources\Strings\Common.Designer.cs">
+    <Compile Include="XamlResources\Strings\Common.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Common.resx</DependentUpon>
@@ -97,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Styles\CheckBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Styles\ShapeStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,8 +151,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Strings\Common.de.resx" />
-    <EmbeddedResource Include="Resources\Strings\Common.resx">
+    <EmbeddedResource Include="XamlResources\Strings\Common.de.resx" />
+    <EmbeddedResource Include="XamlResources\Strings\Common.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -165,22 +169,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Gear_Black.png" />
-    <Resource Include="Resources\Images\Gear_White.png" />
+    <Resource Include="XamlResources\Images\Gear_Black.png" />
+    <Resource Include="XamlResources\Images\Gear_White.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Back_Black.png" />
-    <Resource Include="Resources\Images\Back_White.png" />
-    <Resource Include="Resources\Images\Close_Black.png" />
-    <Resource Include="Resources\Images\Close_White.png" />
-    <Resource Include="Resources\Images\Done_Black.png" />
-    <Resource Include="Resources\Images\Done_White.png" />
-    <Resource Include="Resources\Images\Forward_Black.png" />
-    <Resource Include="Resources\Images\Forward_White.png" />
-    <Resource Include="Resources\Images\Maximize_Black.png" />
-    <Resource Include="Resources\Images\Maximize_White.png" />
-    <Resource Include="Resources\Images\Minimize_Black.png" />
-    <Resource Include="Resources\Images\Minimize_White.png" />
+    <Resource Include="XamlResources\Images\Back_Black.png" />
+    <Resource Include="XamlResources\Images\Back_White.png" />
+    <Resource Include="XamlResources\Images\Close_Black.png" />
+    <Resource Include="XamlResources\Images\Close_White.png" />
+    <Resource Include="XamlResources\Images\Done_Black.png" />
+    <Resource Include="XamlResources\Images\Done_White.png" />
+    <Resource Include="XamlResources\Images\Forward_Black.png" />
+    <Resource Include="XamlResources\Images\Forward_White.png" />
+    <Resource Include="XamlResources\Images\Maximize_Black.png" />
+    <Resource Include="XamlResources\Images\Maximize_White.png" />
+    <Resource Include="XamlResources\Images\Minimize_Black.png" />
+    <Resource Include="XamlResources\Images\Minimize_White.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JsonDataAccess\JsonDataAccess.csproj">

@@ -19,14 +19,14 @@
     <Color x:Key="TitleBarButtonPressedColor" A="255" R="201" G="201" B="202"/>
 
     <SolidColorBrush x:Key="ScrollBarBrush" Color="#ADABAB"/>
-    
-    <BitmapImage x:Key="BackButtonImage" UriSource="../../Resources/Images/Back_Black.png"/>
-    <BitmapImage x:Key="ForwardButtonImage" UriSource="../../Resources/Images/Forward_Black.png"/>
-    <BitmapImage x:Key="CloseButtonImage" UriSource="../../Resources/Images/close_Black.png"/>
-    <BitmapImage x:Key="DoneButtonImage" UriSource="../../Resources/Images/Done_Black.png"/>
 
-    <BitmapImage x:Key="TitleBarSettingsButtonImage" UriSource="../../Resources/Images/Gear_Black.png"/>
-    <BitmapImage x:Key="TitleBarMinimizeButtonImage" UriSource="../../Resources/Images/Minimize_Black.png"/>
-    <BitmapImage x:Key="TitleBarMaximizeButtonImage" UriSource="../../Resources/Images/Maximize_Black.png"/>
-    <BitmapImage x:Key="TitleBarCloseButtonImage" UriSource="../../Resources/Images/Close_Black.png"/>
+    <BitmapImage x:Key="BackButtonImage" UriSource="../../XamlResources/Images/Back_Black.png"/>
+    <BitmapImage x:Key="ForwardButtonImage" UriSource="../../XamlResources/Images/Forward_Black.png"/>
+    <BitmapImage x:Key="CloseButtonImage" UriSource="../../XamlResources/Images/close_Black.png"/>
+    <BitmapImage x:Key="DoneButtonImage" UriSource="../../XamlResources/Images/Done_Black.png"/>
+
+    <BitmapImage x:Key="TitleBarSettingsButtonImage" UriSource="../../XamlResources/Images/Gear_Black.png"/>
+    <BitmapImage x:Key="TitleBarMinimizeButtonImage" UriSource="../../XamlResources/Images/Minimize_Black.png"/>
+    <BitmapImage x:Key="TitleBarMaximizeButtonImage" UriSource="../../XamlResources/Images/Maximize_Black.png"/>
+    <BitmapImage x:Key="TitleBarCloseButtonImage" UriSource="../../XamlResources/Images/Close_Black.png"/>
 </ResourceDictionary>

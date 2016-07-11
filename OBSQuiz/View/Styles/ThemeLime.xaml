@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="ThemeBrush" Color="LimeGreen"/>
+    <SolidColorBrush x:Key="ThemeBrush" Color="#57C30F"/>
     
     <SolidColorBrush x:Key="BackgroundBrush" Color="White"/>
 
@@ -20,13 +20,13 @@
 
     <SolidColorBrush x:Key="ScrollBarBrush" Color="#ADABAB"/>
 
-    <BitmapImage x:Key="BackButtonImage" UriSource="../../Resources/Images/Back_White.png"/>
-    <BitmapImage x:Key="ForwardButtonImage" UriSource="../../Resources/Images/Forward_White.png"/>
-    <BitmapImage x:Key="CloseButtonImage" UriSource="../../Resources/Images/close_White.png"/>
-    <BitmapImage x:Key="DoneButtonImage" UriSource="../../Resources/Images/Done_White.png"/>
+    <BitmapImage x:Key="BackButtonImage" UriSource="../../XamlResources/Images/Back_White.png"/>
+    <BitmapImage x:Key="ForwardButtonImage" UriSource="../../XamlResources/Images/Forward_White.png"/>
+    <BitmapImage x:Key="CloseButtonImage" UriSource="../../XamlResources/Images/close_White.png"/>
+    <BitmapImage x:Key="DoneButtonImage" UriSource="../../XamlResources/Images/Done_White.png"/>
 
-    <BitmapImage x:Key="TitleBarSettingsButtonImage" UriSource="../../Resources/Images/Gear_Black.png"/>
-    <BitmapImage x:Key="TitleBarMinimizeButtonImage" UriSource="../../Resources/Images/Minimize_Black.png"/>
-    <BitmapImage x:Key="TitleBarMaximizeButtonImage" UriSource="../../Resources/Images/Maximize_Black.png"/>
-    <BitmapImage x:Key="TitleBarCloseButtonImage" UriSource="../../Resources/Images/Close_Black.png"/>
+    <BitmapImage x:Key="TitleBarSettingsButtonImage" UriSource="../../XamlResources/Images/Gear_Black.png"/>
+    <BitmapImage x:Key="TitleBarMinimizeButtonImage" UriSource="../../XamlResources/Images/Minimize_Black.png"/>
+    <BitmapImage x:Key="TitleBarMaximizeButtonImage" UriSource="../../XamlResources/Images/Maximize_Black.png"/>
+    <BitmapImage x:Key="TitleBarCloseButtonImage" UriSource="../../XamlResources/Images/Close_Black.png"/>
 </ResourceDictionary>

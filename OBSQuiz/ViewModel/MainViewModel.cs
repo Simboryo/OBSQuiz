@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
 using System.Windows;
@@ -124,19 +125,55 @@ namespace OBSQuiz.ViewModel
 
         #endregion
 
-        #region MessageBoxText
+        #region MessageBox texts
 
-        private string messageBoxText;
+        #region RightAnswerText
 
-        public string MessageBoxText
+        private string rightAnswerText;
+
+        public string RightAnswerText
         {
-            get { return messageBoxText; }
+            get { return rightAnswerText; }
             set
             {
-                messageBoxText = value;
-                FirePropertyChanged(nameof(this.MessageBoxText));
+                rightAnswerText = value;
+                FirePropertyChanged(nameof(this.RightAnswerText));
             }
         }
+
+        #endregion
+
+        #region AllRightAnswerText
+
+        private string allRightAnswerText;
+
+        public string AllRightAnswerText
+        {
+            get { return allRightAnswerText; }
+            set
+            {
+                allRightAnswerText = value;
+                FirePropertyChanged(nameof(this.AllRightAnswerText));
+            }
+        }
+
+        #endregion
+
+        #region WrongAnswerText
+
+        private string wrongAnswerText;
+
+        public string WrongAnswerText
+        {
+            get { return wrongAnswerText; }
+            set
+            {
+                wrongAnswerText = value;
+                FirePropertyChanged(nameof(this.WrongAnswerText));
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -253,7 +290,7 @@ namespace OBSQuiz.ViewModel
             this.JsonDataPath = ConfigurationManager.AppSettings.Get(nameof(this.JsonDataPath));
             this.dataManager.Initialize(this.JsonDataPath);
 
-            this.NoDataMessageText = Resources.Strings.Common.NoDataSelected.ToUpper();
+            this.NoDataMessageText = XamlResources.Strings.Common.NoDataSelected.ToUpper();
             this.isNoDataMessageVisible = true;
             this.IsBackButtonVisible = false;
             this.IsQuestionBlockVisible = false;
@@ -304,14 +341,14 @@ namespace OBSQuiz.ViewModel
                 int questionOrderNumber;
                 if (int.TryParse(questionModel.OrderNumber, out questionOrderNumber))
                 {
-                    ObservableCollection<Answer> answerModelCollection = new ObservableCollection<Answer>();
+                    var answerModelCollection = new ObservableCollection<Answer>();
 
                     foreach (AnswerModel answerModel in questionModel.AnswerList)
                     {
                         int answerOrderNumber;
                         if(int.TryParse(questionModel.OrderNumber, out answerOrderNumber))
                         {
-                            SolidColorBrush borderBrush = Application.Current.Resources[CHECKBOXBORDERCOLOR] as SolidColorBrush;
+                            var borderBrush = Application.Current.Resources[CHECKBOXBORDERCOLOR] as SolidColorBrush;
                             answerModelCollection.Add(new Answer(answerOrderNumber, answerModel.AnswerText, false, answerModel.IsTrue, borderBrush));
                         }
                     }
@@ -336,12 +373,12 @@ namespace OBSQuiz.ViewModel
             if (this.QuestionCollection.Count > 0)
             {
                 this.IsQuestionBlockVisible = true;
-                this.isNoDataMessageVisible = false;
+                this.IsNoDataMessageVisible = false;
             }
             else
             {
-                this.NoDataMessageText = Resources.Strings.Common.NoQuestionAvailable.ToUpper();
-                this.isNoDataMessageVisible = true;
+                this.NoDataMessageText = XamlResources.Strings.Common.NoQuestionAvailable.ToUpper();
+                this.IsNoDataMessageVisible = true;
             }
         }
 
@@ -351,7 +388,8 @@ namespace OBSQuiz.ViewModel
 
         private void backToSubjects()
         {
-            this.NoDataMessageText = Resources.Strings.Common.NoDataSelected.ToUpper();
+            this.resetMessageBox();
+            this.resetNoDataMessage(true);
             this.IsBackButtonVisible = false;
             this.IsQuestionBlockVisible = false;
 
@@ -373,8 +411,8 @@ namespace OBSQuiz.ViewModel
                 int topicCount = this.dataManager.GetTopicCountBySubject(subject);
                 int questionCount = this.dataManager.GetQuestionCountBySubject(subject);
 
-                string topic = topicCount == 1  ? Resources.Strings.Common.Topic : Resources.Strings.Common.Topics;
-                string question = questionCount == 1 ? Resources.Strings.Common.Question : Resources.Strings.Common.Questions;
+                string topic = topicCount == 1  ? XamlResources.Strings.Common.Topic : XamlResources.Strings.Common.Topics;
+                string question = questionCount == 1 ? XamlResources.Strings.Common.Question : XamlResources.Strings.Common.Questions;
 
                 this.MenuButtonCollection.Add(new MenuButtonModel(subject, $"{topicCount} {topic} | {questionCount} {question}"));
             }
@@ -397,20 +435,32 @@ namespace OBSQuiz.ViewModel
                 {
                     int questionCount = this.dataManager.GetQuestionCountBySubjectAndTopic(subject, topic);
 
-                    string question = questionCount == 1 ? Resources.Strings.Common.Question : Resources.Strings.Common.Questions;
+                    string question = questionCount == 1 ? XamlResources.Strings.Common.Question : XamlResources.Strings.Common.Questions;
 
                     this.MenuButtonCollection.Add(new MenuButtonModel(topic, $"{questionCount} {question}"));
                 }
             }
             else
             {
-                this.NoDataMessageText = Resources.Strings.Common.NoTopicAvailable.ToUpper();
+                this.NoDataMessageText = XamlResources.Strings.Common.NoTopicAvailable.ToUpper();
                 this.isNoDataMessageVisible = true;
             }
         }
 
         #endregion
-        
+
+        #region hideMessageBoxAndShowQuestionResult
+
+        private void hideMessageBoxAndShowQuestionResult()
+        {
+            this.IsMessageBoxVisible = false;
+            this.IsQuestionBlockVisible = true;
+        }
+
+        #endregion
+
+        #region Navigation methods
+
         #region navigateBack
 
         private void navigateBack()
@@ -463,13 +513,13 @@ namespace OBSQuiz.ViewModel
         }
 
         #endregion
-
+        
         #region navigateDone
 
         private void navigateDone()
         {
             int rightAnswerCount = 0;
-            //int falseAnswerCount = 0;
+            int wrongAnswerCount = 0;
             int possibleRightAnswerCount = 0;
 
             foreach (Question question in this.QuestionCollection)
@@ -483,7 +533,7 @@ namespace OBSQuiz.ViewModel
                     }
                     else if (answer.IsChecked != answer.IsTrue && answer.IsChecked)
                     {
-                        //falseAnswerCount++;
+                        wrongAnswerCount++;
                         answer.CheckboxBorderBrush = new SolidColorBrush(Colors.Red);
                     }
 
@@ -496,46 +546,82 @@ namespace OBSQuiz.ViewModel
 
             this.IsQuestionBlockVisible = false;
             this.IsMessageBoxVisible = true;
-            this.MessageBoxText = $"{rightAnswerCount} {Resources.Strings.Common.Of} {possibleRightAnswerCount}";
+            this.RightAnswerText = rightAnswerCount.ToString();
+            this.AllRightAnswerText = possibleRightAnswerCount.ToString();
+            this.WrongAnswerText = wrongAnswerCount.ToString();
         }
 
         #endregion
 
-        #region hideMessageBoxAndShowQuestionResult
+        #region canNavigateDone
 
-        private void hideMessageBoxAndShowQuestionResult()
+        private bool canNavigateDone()
         {
-            this.IsMessageBoxVisible = false;
-            this.IsQuestionBlockVisible = true;
+            return this.QuestionCollection != null && this.QuestionCollection?.Count > 0;
         }
 
         #endregion
+
+        #endregion
+
+        #region Reset methods
 
         #region resetData
 
         private void resetData()
         {
             this.dataManager = new DataManager();
-            
+
             this.IsPathTextBoxVisible = false;
             this.IsBackButtonVisible = false;
-            this.IsQuestionBlockVisible = false;
-            this.isNoDataMessageVisible = true;
-            this.IsMessageBoxVisible = false;
 
-            this.MessageBoxText = string.Empty;
-            this.NoDataMessageText = Resources.Strings.Common.NoDataSelected.ToUpper();
+            this.resetNoDataMessage(true);
+            this.resetQuestionBlock();
+            this.resetMessageBox();
 
             this.MenuButtonCollection?.Clear();
+
+            this.dataManager.Initialize(this.JsonDataPath);
+            this.setMenuButtonCollectionToSubject();
+        }
+
+        #endregion
+
+        #region resetNoDataMessage
+
+        private void resetNoDataMessage(bool isVisible)
+        {
+            this.IsNoDataMessageVisible = isVisible;
+            this.NoDataMessageText = XamlResources.Strings.Common.NoDataSelected.ToUpper();
+        }
+
+        #endregion
+
+        #region resetQuestionBlock
+
+        private void resetQuestionBlock()
+        {
+            this.IsQuestionBlockVisible = false;
             this.QuestionCollection?.Clear();
 
             this.CurrentQuestionText = string.Empty;
             this.CurrentAnswerCollection?.Clear();
             this.CurrentQuestionOrderNumber = 0;
-
-            this.dataManager.Initialize(this.JsonDataPath);
-            this.setMenuButtonCollectionToSubject();
         }
+
+        #endregion
+
+        #region resetMessageBox
+
+        private void resetMessageBox()
+        {
+            this.IsMessageBoxVisible = false;
+            this.RightAnswerText = string.Empty;
+            this.AllRightAnswerText = string.Empty;
+            this.WrongAnswerText = string.Empty;
+        }
+
+        #endregion
 
         #endregion
 
@@ -604,7 +690,7 @@ namespace OBSQuiz.ViewModel
 
         public ICommand NavigationDoneCommand
         {
-            get { return navigationDoneCommand ?? (navigationDoneCommand = new RelayCommand(p => this.navigateDone())); }
+            get { return navigationDoneCommand ?? (navigationDoneCommand = new RelayCommand(p => this.navigateDone(), p => this.canNavigateDone())); }
         }
 
         #endregion

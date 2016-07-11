@@ -135,10 +135,16 @@
   <data name="Questions" xml:space="preserve">
     <value>Questions</value>
   </data>
+  <data name="Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
   <data name="Topic" xml:space="preserve">
     <value>Topic</value>
   </data>
   <data name="Topics" xml:space="preserve">
     <value>Topics</value>
+  </data>
+  <data name="Wrong" xml:space="preserve">
+    <value>Wrong</value>
   </data>
 </root>

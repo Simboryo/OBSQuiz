@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OBSQuiz.Resources.Strings {
+namespace OBSQuiz.XamlResources.Strings {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace OBSQuiz.Resources.Strings {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OBSQuiz.Resources.Strings.Common", typeof(Common).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OBSQuiz.XamlResources.Strings.Common", typeof(Common).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -115,6 +115,15 @@ namespace OBSQuiz.Resources.Strings {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Right ähnelt.
+        /// </summary>
+        internal static string Right {
+            get {
+                return ResourceManager.GetString("Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Topic ähnelt.
         /// </summary>
         internal static string Topic {
@@ -129,6 +138,15 @@ namespace OBSQuiz.Resources.Strings {
         internal static string Topics {
             get {
                 return ResourceManager.GetString("Topics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wrong ähnelt.
+        /// </summary>
+        internal static string Wrong {
+            get {
+                return ResourceManager.GetString("Wrong", resourceCulture);
             }
         }
     }

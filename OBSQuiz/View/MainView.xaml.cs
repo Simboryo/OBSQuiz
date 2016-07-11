@@ -37,6 +37,11 @@ namespace OBSQuiz.View
 
             this.DataContext = new MainViewModel();
 
+            this.TxtBlRightAnswer.Text = XamlResources.Strings.Common.Right;
+            this.TxtBlWrongAnswer.Text = XamlResources.Strings.Common.Wrong;
+
+            #region Theme
+
             List<string> themeList = Directory.GetFiles(STYLEPATH).Where(p => p.ToUpper().Contains(THEME)).ToList();
             string startUpTheme = ConfigurationManager.AppSettings.Get(STARTUPTHEME).ToUpper();
 
@@ -53,6 +58,8 @@ namespace OBSQuiz.View
             }
 
             this.changeTheme();
+
+            #endregion
         }
 
         #endregion
